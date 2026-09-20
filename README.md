@@ -1,8 +1,6 @@
-# Bacău.NET iPhone PWA — V3.1
+# Bacău.NET iPhone PWA — V3.2
 
-Hotfix de actualizare forțată pentru Reader-ul intern V3.
-- app.js și style.css au versiune explicită ?v=31
-- service worker nou bacau-net-v31
-- cache-urile vechi sunt eliminate la activare
-- shell-ul aplicației este network-first
-- Reader-ul intern rămâne activ pentru „Citește articolul”
+Fix Reader:
+- reparat click-ul pe „Citește articolul” (handler-ul Reader nu era atașat cardurilor după render);
+- reparată funcția de afișare a vechimii articolului în Reader;
+- cache/version bump la v32.

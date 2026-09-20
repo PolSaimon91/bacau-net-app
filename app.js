@@ -33,7 +33,7 @@ function render(){
  bindSave();
 }
 function renderSaved(){const a=saved();$('#savedFeed').innerHTML=a.length?a.map(card).join(''):'<div class="empty">Nu ai salvat încă articole.</div>';bindSave();}
-function bindSave(){$$('.save').forEach(b=>b.onclick=()=>{let a=saved(),p=posts.find(x=>x.id===b.dataset.id)||a.find(x=>x.id===b.dataset.id);if(a.some(x=>x.id===b.dataset.id))a=a.filter(x=>x.id!==b.dataset.id);else if(p)a.unshift(p);setSaved(a);render();renderSaved();});}
+function bindSave(){$$('.read').forEach(a=>a.onclick=e=>{e.preventDefault();openReader(a.dataset.id);});$$('.save').forEach(b=>b.onclick=()=>{let a=saved(),p=posts.find(x=>x.id===b.dataset.id)||a.find(x=>x.id===b.dataset.id);if(a.some(x=>x.id===b.dataset.id))a=a.filter(x=>x.id!==b.dataset.id);else if(p)a.unshift(p);setSaved(a);render();renderSaved();});}
 $('#searchBtn').onclick=()=>{$('#searchBox').classList.toggle('hidden');if(!$('#searchBox').classList.contains('hidden'))$('#searchInput').focus();}
 $('#searchInput').oninput=e=>{query=e.target.value.trim().toLowerCase();render();}
 $$('.chip').forEach(b=>b.onclick=()=>{$$('.chip').forEach(x=>x.classList.remove('active'));b.classList.add('active');activeCat=b.dataset.cat;render();});
@@ -67,7 +67,7 @@ async function openReader(id){
  }
  let content=cleanArticle(full.content||'');
  if(!content) content='<p>'+esc(full.excerpt||'Conținutul integral nu este disponibil prin feedul public.')+'</p>';
- $('#readerContent').innerHTML=`<article class="readerArticle">${full.image?`<img class="readerHero" src="${esc(full.image)}" alt="">`:''}<div class="readerBody"><div class="readerMeta">${esc(full.cat)} · ${esc(ago(full.date))}</div><h1 class="readerTitle">${esc(full.title)}</h1><div class="readerText">${content}</div><a class="readerSource" href="${esc(full.url)}" target="_blank" rel="noopener">Vezi originalul pe Bacău.NET ↗</a></div></article>`;
+ $('#readerContent').innerHTML=`<article class="readerArticle">${full.image?`<img class="readerHero" src="${esc(full.image)}" alt="">`:''}<div class="readerBody"><div class="readerMeta">${esc(full.cat)} · ${esc(timeAgo(full.date))}</div><h1 class="readerTitle">${esc(full.title)}</h1><div class="readerText">${content}</div><a class="readerSource" href="${esc(full.url)}" target="_blank" rel="noopener">Vezi originalul pe Bacău.NET ↗</a></div></article>`;
  updateReaderSave();
 }
 function updateReaderSave(){if(!readerPost)return;$('#readerSave').textContent=saved().some(x=>x.id===readerPost.id)?'♥':'♡'}
