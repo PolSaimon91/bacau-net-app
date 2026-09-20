@@ -40,6 +40,7 @@ $$('.chip').forEach(b=>b.onclick=()=>{$$('.chip').forEach(x=>x.classList.remove(
 $$('[data-view]').forEach(b=>b.onclick=()=>{const v=b.dataset.view;setView(v);if(v==='saved')renderSaved();});
 
 
+let homeScrollY=0;
 let readerPost=null;
 function cleanArticle(html){
  const d=document.createElement('div'); d.innerHTML=html||'';
@@ -55,6 +56,7 @@ function setView(v){
  $$('.tab').forEach(x=>x.classList.toggle('active',x.dataset.view===v));
 }
 async function openReader(id){
+ homeScrollY=window.scrollY || document.documentElement.scrollTop || 0;
  let p=posts.find(x=>x.id===id)||saved().find(x=>x.id===id); if(!p)return;
  readerPost=p; setView('reader'); window.scrollTo(0,0);
  $('#readerContent').innerHTML='<div class="readerLoading">Se încarcă articolul…</div>';
@@ -79,7 +81,7 @@ async function openReader(id){
  updateReaderSave();
 }
 function updateReaderSave(){if(!readerPost)return;$('#readerSave').textContent=saved().some(x=>x.id===readerPost.id)?'♥':'♡'}
-$('#readerBack').onclick=()=>{setView('home');window.scrollTo(0,0)};
+$('#readerBack').onclick=()=>{setView('home');requestAnimationFrame(()=>requestAnimationFrame(()=>window.scrollTo(0,homeScrollY)))};
 $('#readerSave').onclick=()=>{if(!readerPost)return;let a=saved();a=a.some(x=>x.id===readerPost.id)?a.filter(x=>x.id!==readerPost.id):[readerPost,...a];setSaved(a);updateReaderSave()};
 $('#readerShare').onclick=async()=>{if(!readerPost)return;try{if(navigator.share)await navigator.share({title:readerPost.title,url:readerPost.url});else window.open(readerPost.url,'_blank')}catch(e){}};
 

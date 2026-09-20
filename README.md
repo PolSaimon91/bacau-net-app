@@ -1,8 +1,7 @@
-# Bacău.NET iPhone PWA — V3.3
+# Bacău.NET iPhone PWA — V3.4
 
-Full-text Reader fix:
-- păstrează `content.rendered` primit din WordPress REST în obiectul fiecărei știri;
-- pentru articolele fără body în feed, cere endpoint-ul individual WordPress cu `_embed=1`;
-- dacă browserul blochează cererea directă, încearcă aceeași cerere prin fallback-ul proxy deja folosit de aplicație;
-- excerpt-ul este folosit numai ca ultim fallback;
-- cache/version bump la v33.
+Update navigare Reader:
+- înainte de deschiderea unui articol se memorează poziția exactă din lista Acasă;
+- la apăsarea „‹ Acasă” din Reader, aplicația revine la aceeași poziție din feed;
+- nu mai sare la primul articol;
+- restul funcțiilor V3.3 rămân neschimbate.
