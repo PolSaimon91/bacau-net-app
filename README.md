@@ -1,5 +1,8 @@
-# Bacău.NET iPhone PWA — V3
+# Bacău.NET iPhone PWA — V3.1
 
-V3 adaugă Reader intern: articolele sunt afișate în interfața aplicației folosind conținutul disponibil prin API-ul public WordPress, fără încărcarea paginii web și a reclamelor/scripturilor ei. Include Back, Save, Share și link către originalul Bacău.NET.
-
-Rămân active auto-refresh la 60 secunde și refresh imediat la revenirea în aplicație.
+Hotfix de actualizare forțată pentru Reader-ul intern V3.
+- app.js și style.css au versiune explicită ?v=31
+- service worker nou bacau-net-v31
+- cache-urile vechi sunt eliminate la activare
+- shell-ul aplicației este network-first
+- Reader-ul intern rămâne activ pentru „Citește articolul”
