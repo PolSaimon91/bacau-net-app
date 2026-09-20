@@ -1,3 +1,5 @@
-# Bacău.NET iPhone PWA — V2
+# Bacău.NET iPhone PWA — V3
 
-Auto-refresh la 60 secunde cât aplicația este activă și refresh imediat la revenire. Feedul aplicației nu injectează reclame; paginile originale Bacău.NET pot conține reclamele site-ului.
+V3 adaugă Reader intern: articolele sunt afișate în interfața aplicației folosind conținutul disponibil prin API-ul public WordPress, fără încărcarea paginii web și a reclamelor/scripturilor ei. Include Back, Save, Share și link către originalul Bacău.NET.
+
+Rămân active auto-refresh la 60 secunde și refresh imediat la revenirea în aplicație.
