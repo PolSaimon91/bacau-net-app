@@ -60,13 +60,21 @@ async function openReader(id){
  $('#readerContent').innerHTML='<div class="readerLoading">Se încarcă articolul…</div>';
  let full=p;
  if(!p.content){
+   const detailURL='https://www.bacau.net/wp-json/wp/v2/posts/'+encodeURIComponent(id)+'?_embed=1&_='+Date.now();
    try{
-     let r=await fetch('https://www.bacau.net/wp-json/wp/v2/posts/'+encodeURIComponent(id)+'?_='+Date.now(),{cache:'no-store'});
-     if(r.ok){let x=await r.json();full=fromWP([x])[0];readerPost=full}
-   }catch(e){}
+     let r=await fetch(detailURL,{cache:'no-store'});
+     if(!r.ok) throw new Error('direct');
+     let x=await r.json(); full=fromWP([x])[0]; readerPost=full;
+   }catch(e){
+     try{
+       let r=await fetch(PROXY+encodeURIComponent(detailURL),{cache:'no-store'});
+       if(!r.ok) throw new Error('proxy');
+       let x=await r.json(); full=fromWP([x])[0]; readerPost=full;
+     }catch(e2){}
+   }
  }
  let content=cleanArticle(full.content||'');
- if(!content) content='<p>'+esc(full.excerpt||'Conținutul integral nu este disponibil prin feedul public.')+'</p>';
+ if(!content) content='<p>'+esc(full.excerpt||'Conținutul integral nu este disponibil prin API-ul public.')+'</p><p class="readerNotice">Conținutul integral nu a fost furnizat de API-ul public pentru acest articol.</p>';
  $('#readerContent').innerHTML=`<article class="readerArticle">${full.image?`<img class="readerHero" src="${esc(full.image)}" alt="">`:''}<div class="readerBody"><div class="readerMeta">${esc(full.cat)} · ${esc(timeAgo(full.date))}</div><h1 class="readerTitle">${esc(full.title)}</h1><div class="readerText">${content}</div><a class="readerSource" href="${esc(full.url)}" target="_blank" rel="noopener">Vezi originalul pe Bacău.NET ↗</a></div></article>`;
  updateReaderSave();
 }
