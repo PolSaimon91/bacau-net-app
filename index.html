@@ -8,7 +8,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="Bacău.NET">
   <link rel="manifest" href="./manifest.webmanifest">
-  <link rel="apple-touch-icon" href="./icons/icon-180.png">
+  <link rel="apple-touch-icon" href="./icon-180.png">
   <link rel="stylesheet" href="./style.css">
   <title>Bacău.NET</title>
 </head>
@@ -28,7 +28,7 @@
     <button class="chip" data-cat="stiri bacau">Bacău</button>
     <button class="chip" data-cat="eveniment">Eveniment</button>
     <button class="chip" data-cat="general">General</button>
-    <button class="chip" data-cat="featured">Featured</button>
+    
   </nav>
 
   <main>
@@ -53,10 +53,10 @@
   <nav class="bottom">
     <button data-view="home" class="tab active"><b>⌂</b><small>Acasă</small></button>
     <button data-view="saved" class="tab"><b>♡</b><small>Salvate</small></button>
-    <button id="refreshBtn" class="tab"><b>↻</b><small>Refresh</small></button>
+    <button id="searchTab" class="tab"><b>⌕</b><small>Căutare</small></button>
     <button data-view="about" class="tab"><b>ⓘ</b><small>Despre</small></button>
   </nav>
 </div>
 <script src="./app.js"></script>
-</body>
+<script>document.getElementById('searchTab').onclick=()=>{document.getElementById('searchBox').classList.remove('hidden');document.getElementById('searchInput').focus();}</script></body>
 </html>

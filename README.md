@@ -1,8 +1,3 @@
-# Bacău.NET iPhone PWA
+# Bacău.NET iPhone PWA — V2
 
-Client personal PWA pentru iPhone, cu feed, căutare, favorite locale, dark mode și acces la articolele originale Bacău.NET.
-
-## Publicare
-GitHub Pages: Settings → Pages → Deploy from a branch → `main` / `(root)`.
-
-Aplicația nu este afiliată oficial cu Bacău.NET. Conținutul editorial rămâne pe site-ul original.
+Auto-refresh la 60 secunde cât aplicația este activă și refresh imediat la revenire. Feedul aplicației nu injectează reclame; paginile originale Bacău.NET pot conține reclamele site-ului.
